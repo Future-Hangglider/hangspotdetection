@@ -1,0 +1,33 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides: hangspot udp
+# Required-Start:    $local_fs $syslog $remote_fs
+# Required-Stop:     $local_fs $syslog $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Camera blob detection to udp output
+### END INIT INFO
+
+. /lib/lsb/init-functions
+set -e
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+case $1 in
+  start)
+        log_daemon_msg "Starting hangspot"
+        source /home/pi/.virtualenvs/cv/bin/activate
+        touch /home/pi/deletetostophangspot
+        python /home/pi/hangtrackingscript.py &
+  ;;
+  stop)
+        log_daemon_msg "How do we stop hangspot"
+        rm -f /home/pi/deletetostophangspot
+  ;;
+  *)
+        N=/etc/init.d/bluetooth
+        echo "Usage: /etc/init.d/hangspot_initd {start|stop}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

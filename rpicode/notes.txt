@@ -1,0 +1,47 @@
+
+
+1. Power up the Rpi
+2. Connect to wifi access point "hangspot" password "bub....."
+3. ssh pi@192.168.0.10  (same password)
+4. type: "workon cv" to enable the virtualenv
+5. type "jupyter notebook"
+6. On the PC go to: 192.168.0.10:8888  (same password)
+7. Open and run hangtracking.ipynb which will access the camera and write the position of the blue disk to the UDP socket on 9002
+
+
+
+
+-----------------------------------
+This is the build process for making OpenCV on the raspberryPi.  
+(The image is backed up)
+
+Flash https://www.raspberrypi.org/downloads/raspbian/ using etcher.io
+https://www.raspberrypi.org/documentation/remote-access/ip-address.md
+   change to hangspot.local
+raspi-config expand filesystem
+enable ssh, camera, spi, i2c
+
+https://www.instructables.com/id/Jupyter-Notebook-on-Raspberry-Pi/
+apt-get update
+apt-get install python3-matplotlib
+apt-get install python3-scipy
+pip3 install --upgrade pip
+reboot
+sudo pip3 install jupyter
+
+http://jupyter-notebook.readthedocs.io/en/stable/public_server.html
+$ jupyter notebook --generate-config
+c.NotebookApp.ip = '*'
+c.NotebookApp.password = u'sha1:bcd259ccf...<your hashed password here>'
+c.NotebookApp.open_browser = False
+
+add to /boot/config.txt the line 
+dtparam=i2c1_baudrate=500000
+
+building the opencv thing
+https://www.pyimagesearch.com/2015/03/30/accessing-the-raspberry-pi-camera-with-opencv-and-python/
+pip install "picamera[array]"
+
+
+https://thepi.io/how-to-use-your-raspberry-pi-as-a-wireless-access-point/
+
