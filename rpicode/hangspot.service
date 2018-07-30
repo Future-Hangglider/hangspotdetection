@@ -1,0 +1,17 @@
+[Unit]
+Description=Use camera to see blue spots and send to UDP
+Wants=NetworkManager-wait-online.service network-online.target
+After=network.target syslog.target network-online.target NetworkManager-wait-online.service
+
+[Service]
+WorkingDirectory=/home/pi
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=hhangspot
+PIDFile=/run/hangspot.pid
+User=root
+Group=root
+ExecStart=/home/pi/hangspot.sh
+
+[Install]
+WantedBy=multi-user.target

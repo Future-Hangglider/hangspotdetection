@@ -8,6 +8,10 @@
 6. On the PC go to: 192.168.0.10:8888  (same password)
 7. Open and run hangtracking.ipynb which will access the camera and write the position of the blue disk to the UDP socket on 9002
 
+We have now added this into the init.d using the instructions at: https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
+The file hangspot_initd is in /etc/init.d/
+and we have run: "sudo update-rc.d hangspot_initd defaults" to enable it
+
 
 
 

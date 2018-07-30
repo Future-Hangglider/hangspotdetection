@@ -21,7 +21,7 @@ def udpincomingthread():
         try:
             for i in range(100000):
                 udprecstring, addr = s.recvfrom(1024)  # heartbeat
-                print("udpincoming", data, addr)
+                print("udpincoming", udprecstring, addr)
                 if i == 0:
                     udpqueue.put_nowait(s) # hand the socket over with first connection
                     udpqueue.put_nowait(addr)
@@ -89,7 +89,7 @@ import cv2, os
 print("check deletetostop file", os.path.exists("/home/pi/deletetostophangspot"))
 workingmask = None
 n = 0
-while ((n%10) != 0) or os.path.exists("/home/pi/deletetostophangspot"):
+while True:
     n += 1
     tstamp, img = qframes.get()
     cv2.GaussianBlur(img, (11, 11), 0, dst=img)
