@@ -1,16 +1,31 @@
-
+Connecting to the Rpi through wifi
 
 1. Power up the Rpi
 2. Connect to wifi access point "hangspot" password "bub....."
 3. ssh pi@192.168.0.10  (same password)
+
+-----------------
+Controlling what's running in the hangspot service
+
+We have now added this into the systemctl using the instructions at: https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
+
+The hangspot.sh is run because there is a symbolic link
+/etc/systemd/system/hangspot.service -> /home/pi/hangspot.service
+
+To see what's happening, do:
+sudo systemctl status hangspot
+
+Then to stop it running, do:
+sudo systemctl stop hangspot
+
+
+-----------------
+To running Jupyter (to help improve hangspot code or find out what's going on)
+
 4. type: "workon cv" to enable the virtualenv
 5. type "jupyter notebook"
 6. On the PC go to: 192.168.0.10:8888  (same password)
 7. Open and run hangtracking.ipynb which will access the camera and write the position of the blue disk to the UDP socket on 9002
-
-We have now added this into the init.d using the instructions at: https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
-The file hangspot_initd is in /etc/init.d/
-and we have run: "sudo update-rc.d hangspot_initd defaults" to enable it
 
 
 
