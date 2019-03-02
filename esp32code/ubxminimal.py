@@ -5,6 +5,7 @@ if os.uname()[0] == "esp8266":
     micropython.kbd_intr(-1)  # disable keyboard interrupts as otherwise gets killed by Ctrl-Cs
     uartUBX = machine.UART(0, baudrate=9600)
 else:
+    # The RX2 and TX2 on side of ESP32
     uartUBX = machine.UART(1, baudrate=9600, rx=16, tx=17)
 
 def sendNMEA(comm):
