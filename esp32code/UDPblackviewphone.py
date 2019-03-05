@@ -1,9 +1,7 @@
 import network, socket, time, machine
 
-
 sockudp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sockudp.settimeout(0.1)
-
+sockudp.settimeout(0.02)
 si = network.WLAN(network.STA_IF) 
 
 # Connect to Blackview (Android) phone
@@ -26,6 +24,7 @@ def connectS5(pled):
         pled.value(1-pled.value())
         
 # udpaddr = ("192.168.43.1", 9019)  # ip default for android
+secondaddr = None
 def dwrite(mess, udpaddr):
     try:
         sockudp.sendto(mess, udpaddr)
