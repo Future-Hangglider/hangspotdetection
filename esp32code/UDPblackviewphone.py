@@ -7,11 +7,18 @@ si = network.WLAN(network.STA_IF)
 # Connect to Blackview/S5 (Android) phone
 def connectActivePhone(pled):
     si.active(True)
-    ssids = [ l[0]  for l in si.scan() ]
-    if b'BV6000' in ssids:
-        wconn, wpass = b'BV6000', b'beckaaaa'
-    elif b'ES_3041' in ssids:
-        wconn, wpass = b'ES_3041', b'43900000'
+    siscanned = si.scan()
+    siscanned.sort(key=lambda X:X[3])
+    while siscanned:
+        wc = siscanned.pop()
+        print(wc)
+        wconn = wc[0]
+        if wconn == b'BV6000':
+            wpass = b'beckaaaa'
+            break
+        if wconn == b'ES_3041':
+            wpass = b'43900000'
+            break
     else:
         return False
     si.connect(wconn, wpass)
