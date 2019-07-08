@@ -1,5 +1,11 @@
 # hangspotdetection
 
+# This repository is obsolete
+
+Code is being split and moved into other places
+
+### legacy
+
 This contains the code for the ESP32 device on the keel, 
 and also the code to decode the video to get the hangspot.
 
